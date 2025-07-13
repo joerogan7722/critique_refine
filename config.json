@@ -1,0 +1,78 @@
+{
+  "models": {
+    "default_model": "models/gemini-2.5-flash",
+    "fallback_model": "models/gemini-1.5-flash",
+    "embedding_model": "text-embedding-004"
+  },
+  "roles": {
+    "general_critic": { "model": "gemini-2.5-flash" },
+    "refiner": { "model": "models/gemini-2.5-flash" },
+    "style_critic": { "model": "gemini-2.5-flash" },
+    "planner": { "model": "models/gemini-2.5-flash" },
+    "meta_critic": { "model": "models/gemini-2.5-flash" },
+    "music_critic": { "model": "gemini-2.5-flash" },
+    "tutor": { "model": "models/gemini-2.5-flash" },
+    "researcher": { "model": "models/gemini-2.5-flash" },
+    "brainstormer": { "model": "gemini-2.5-flash" },
+    "code_reviewer": { "model": "models/gemini-2.5-flash" },
+    "devils_advocate": { "model": "gemini-2.5-flash" },
+    "user_advocate": { "model": "gemini-2.5-flash" },
+    "efficiency_analyst": { "model": "gemini-2.5-flash" }
+  },
+  "critique_refine_config": {
+    "default_generator_model": "gemini-2.5-flash",
+    "default_critic_role": "general_critic.txt",
+    "default_refiner_role": "refiner.txt",
+    "meta_critic_role": "meta_critic.txt",
+    "max_rounds": 3,
+    "stop_on_no_actionable_critique_threshold": 50
+  },
+  "logging_config": {
+    "log_dir": "logs",
+    "redact_sensitive_data": false
+  },
+  "redaction_config": {
+    "keys_to_redact": [
+      "api_key",
+      "token",
+      "password",
+      "secret"
+    ],
+    "patterns_to_redact": [
+      [
+        "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
+        "[REDACTED_EMAIL]"
+      ],
+      [
+        "https?://\\S+",
+        "[REDACTED_URL]"
+      ]
+    ]
+  },
+  "self_improvement_files": [
+    "core/loop.py",
+    "core/self_review.py"
+  ],
+  "self_review_config": {
+    "default_critic_role": "general_critic.txt",
+    "default_refiner_role": "refiner.txt"
+  },
+  "mcp_servers": [
+    {
+      "name": "code-analysis-server",
+      "url": "http://localhost:5001"
+    },
+    {
+      "name": "test-runner-server",
+      "url": "http://localhost:5002"
+    },
+    {
+      "name": "semantic-refactor-server",
+      "url": "http://localhost:5003"
+    },
+    {
+      "name": "doc-validation-server",
+      "url": "http://localhost:5004"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+strategies:
+  layered_brainstorm:
+    description: "A layered brainstorming approach involving research, brainstorming, devil's advocacy, and refinement.  Useful for complex problems requiring diverse perspectives."
+    roles:
+      - researcher
+      - brainstormer
+      - devils_advocate
+      - refiner
+  learning_boost:
+    description: "Guided learning using interactive lessons and feedback."
+    roles:
+      - researcher
+      - learning_coach
+      - refiner
+  self_optimizer:
+    description: "Analyzes past sessions to identify areas for improvement."
+    roles:
+      - researcher
+      - planner
+      - refiner
+  default:
+    roles:
+      - general_critic
+      - refiner
+    max_rounds: 1
+  self_improve:
+    roles:
+      - code_reviewer
+      - style_critic
+    max_rounds: 2
+  brainstorm_code:
+    roles:
+      - brainstormer
+      - code_reviewer
+    max_rounds: 3
+  research_expand:
+    roles:
+      - researcher
+      - brainstormer
+    max_rounds: 2
+  final_cleanup_deep:
+    - planner
+    - researcher
+    - brainstormer
+    - devils_advocate
+    - user_advocate
+    - efficiency_analyst
+    - code_reviewer
+    - refiner
+  aggressive:
+    max_rounds: 5
+    stop_on_no_actionable_critique_threshold: 100
+    default_critic_model: models/gemini-2.5-flash
+    default_refiner_model: models/gemini-2.5-flash
+  gentle:
+    max_rounds: 2
+    stop_on_no_actionable_critique_threshold: 20
+    default_critic_model: gemini-2.5-flash
+    default_refiner_model: gemini-2.5-flash
+  double_critic:
+    roles:
+      - logic_critic
+      - style_critic
+    default_refiner_role_prompt_file: refiner.txt
+  quick:
+    roles:
+      - general_critic
+      - refiner
+    max_rounds: 1
